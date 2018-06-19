@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +29,7 @@ public class MainFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
     private List<Bunk> bunks = new ArrayList<>();
-
+    private String TAG="Your_Item";
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Nullable
@@ -90,6 +91,7 @@ public class MainFragment extends Fragment {
             mTextView.setText(weekDayName);
             mYourDate.setText(bunk.getDate().toString());
             mCheckBox.setOnCheckedChangeListener(this);
+
         }
          @Override
         public void onClick(View v) {
@@ -99,6 +101,7 @@ public class MainFragment extends Fragment {
 
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
 
 
         }

@@ -8,11 +8,13 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.UUID;
 
 public class Bunk {
 
 
 
+    private UUID mUUID;
     private Date mDate;
     private String mDay;
 
@@ -27,6 +29,7 @@ public class Bunk {
 
     Bunk(Date mydate, boolean Check){
 
+        mUUID=UUID.randomUUID();
         mDate=mydate;
         mDay= (String) DateFormat.format("EEEE",mDate);
     }
@@ -44,6 +47,10 @@ public class Bunk {
         this.isChecked = isChecked;
     }
 
+
+    public UUID getUUID() {
+        return mUUID;
+    }
 
 
 }
