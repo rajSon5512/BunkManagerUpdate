@@ -9,6 +9,8 @@ public class MainActivity extends SingleFragmentActivity {
 
     @Override
     public Fragment getFragment() {
+
         return new MainFragment();
+
     }
 }
