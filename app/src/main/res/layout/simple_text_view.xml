@@ -5,7 +5,7 @@
     >
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
@@ -14,7 +14,8 @@
             android:id="@+id/your_day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="day" />
+            android:text="day"
+            android:textSize="25dp"/>
 
 
         <TextView
@@ -25,22 +26,16 @@
             android:paddingTop="2dp"
             />
 
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
         <CheckBox
-
             android:id="@+id/bunk_choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="300dp" />
+            android:layout_gravity="center"
+            android:text="Bunk"/>
+
 
     </LinearLayout>
+
 
 
 </LinearLayout>
