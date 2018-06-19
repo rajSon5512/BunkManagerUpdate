@@ -66,11 +66,14 @@ public class MainFragment extends Fragment {
 
         public void bind(Bunk bunk) {
             mTextView.setText(bunk.getDate().toString());
-
+            mTextView.setOnClickListener(this);
         }
-         @Override
+
+        @Override
         public void onClick(View v) {
-            Toast.makeText(v.getContext(),mTextView.getText().toString(),Toast.LENGTH_SHORT).show();
+
+            Toast.makeText(getActivity(),mTextView.getText().toString(), Toast.LENGTH_SHORT).show();
+
         }
     }
 
