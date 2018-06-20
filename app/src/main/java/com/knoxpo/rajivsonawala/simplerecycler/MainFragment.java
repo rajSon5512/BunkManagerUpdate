@@ -29,7 +29,7 @@ public class MainFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
     private List<Bunk> bunks = new ArrayList<>();
-    private String TAG="Your_Item";
+    private String TAG = "Your_Item";
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Nullable
@@ -56,57 +56,53 @@ public class MainFragment extends Fragment {
 
         mRecyclerView = view.findViewById(R.id.rv_list);
 
-        int ToatalDay=Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_MONTH);
-        int FirstDay=0;
+        int ToatalDay = Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_MONTH);
+        int FirstDay = 0;
 
         Date d;
 
         for (int i = FirstDay; i < ToatalDay; i++) {
 
-            Calendar c=Calendar.getInstance();
-            c.set(Calendar.DATE,1);
-            c.add(Calendar.DATE,i);
-            d=c.getTime();
-            Bunk bunk=new Bunk(d);
+            Calendar c = Calendar.getInstance();
+            c.set(Calendar.DATE, 1);
+            c.add(Calendar.DATE, i);
+            d = c.getTime();
+            Bunk bunk = new Bunk(d);
             bunks.add(bunk);
         }
     }
 
-    private class BunkHolder extends RecyclerView.ViewHolder implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
+    private class BunkHolder extends RecyclerView.ViewHolder implements CompoundButton.OnCheckedChangeListener {
         private TextView mTextView;
         private TextView mYourDate;
         private CheckBox mCheckBox;
+        private Bunk mBunk;
 
         public BunkHolder(View itemView) {
             super(itemView);
-            mTextView =itemView.findViewById(R.id.your_day);
-            mYourDate=itemView.findViewById(R.id.your_date);
-            mCheckBox=itemView.findViewById(R.id.bunk_choice);
-
+            mTextView = itemView.findViewById(R.id.your_day);
+            mYourDate = itemView.findViewById(R.id.your_date);
+            mCheckBox = itemView.findViewById(R.id.bunk_choice);
         }
 
 
         public void bind(Bunk bunk) {
-           // mTextView.setText(bunk.getDay().toString());
+            // mTextView.setText(bunk.getDay().toString());
+            mBunk = bunk;
+
             Date date = bunk.getDate();
             CharSequence weekDayName = DateFormat.format("EEEE", date);
+
             mTextView.setText(weekDayName);
             mYourDate.setText(bunk.getDate().toString());
+            mCheckBox.setChecked(bunk.isChecked());
+
             mCheckBox.setOnCheckedChangeListener(this);
-
         }
-         @Override
-        public void onClick(View v) {
 
-
-
-        }
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-
-
-
+            mBunk.setIsChecked(isChecked);
         }
     }
 

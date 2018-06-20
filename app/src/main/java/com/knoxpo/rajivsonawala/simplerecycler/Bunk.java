@@ -1,13 +1,6 @@
 package com.knoxpo.rajivsonawala.simplerecycler;
 
-import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.text.format.DateFormat;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 import java.util.UUID;
 
 public class Bunk {
@@ -16,22 +9,17 @@ public class Bunk {
 
     private UUID mUUID;
     private Date mDate;
-    private String mDay;
-
-
-    private boolean isChecked;
+    private boolean mIsChecked;
 
     Bunk(Date mDate){
-
         this(mDate,false);
     }
 
 
-    Bunk(Date mydate, boolean Check){
-
+    Bunk(Date date, boolean isChecked){
         mUUID=UUID.randomUUID();
-        mDate=mydate;
-        mDay= (String) DateFormat.format("EEEE",mDate);
+        mDate=date;
+        mIsChecked=isChecked;
     }
 
     public Date getDate() {
@@ -39,18 +27,16 @@ public class Bunk {
     }
 
 
-    public boolean getIsChecked() {
-        return isChecked;
+    public boolean isChecked() {
+        return mIsChecked;
     }
 
     public void setIsChecked(boolean isChecked) {
-        this.isChecked = isChecked;
+        this.mIsChecked = isChecked;
     }
 
 
     public UUID getUUID() {
         return mUUID;
     }
-
-
 }
