@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
@@ -30,6 +31,10 @@ public class MainFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private List<Bunk> bunks = new ArrayList<>();
     private String TAG = "Your_Item";
+    private Button mButton;
+    private int TotalDay = Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_MONTH);
+    private int mNoofCheck;
+
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Nullable
@@ -42,10 +47,28 @@ public class MainFragment extends Fragment {
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        BunkAdapterFirst bunkAdapterFirst = new BunkAdapterFirst(bunks);
+        final BunkAdapterFirst bunkAdapterFirst = new BunkAdapterFirst(bunks);
 
         mRecyclerView.setAdapter(bunkAdapterFirst);
 
+
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mNoofCheck=0;
+                for(int i=0;i<TotalDay;i++){
+
+                    if(bunks.get(i).isChecked()==true){
+
+                        mNoofCheck=mNoofCheck+1;
+
+                    }
+
+                }
+                Toast.makeText(getActivity(),"Total No of check :"+mNoofCheck,Toast.LENGTH_LONG).show();
+
+            }
+        });
 
         return view;
     }
@@ -55,13 +78,13 @@ public class MainFragment extends Fragment {
     private void init(View view) {
 
         mRecyclerView = view.findViewById(R.id.rv_list);
+        mButton=view.findViewById(R.id.total_checks);
 
-        int ToatalDay = Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_MONTH);
-        int FirstDay = 0;
+        final int FirstDay = 0;
 
         Date d;
 
-        for (int i = FirstDay; i < ToatalDay; i++) {
+        for (int i = FirstDay; i < TotalDay; i++) {
 
             Calendar c = Calendar.getInstance();
             c.set(Calendar.DATE, 1);
@@ -70,6 +93,7 @@ public class MainFragment extends Fragment {
             Bunk bunk = new Bunk(d);
             bunks.add(bunk);
         }
+
     }
 
     private class BunkHolder extends RecyclerView.ViewHolder implements CompoundButton.OnCheckedChangeListener {
@@ -83,6 +107,7 @@ public class MainFragment extends Fragment {
             mTextView = itemView.findViewById(R.id.bunk_day);
             mYourDate = itemView.findViewById(R.id.bunk_date);
             mCheckBox = itemView.findViewById(R.id.bunk_choice);
+
         }
 
 
@@ -95,7 +120,7 @@ public class MainFragment extends Fragment {
 
             mTextView.setText(weekDayName);
 
-            CharSequence Date=DateFormat.format("EEEE ,d/MM/yy",date);
+            CharSequence Date=DateFormat.format("EEEE,d||MM||yy ",date);
 
             mYourDate.setText(Date.toString());
             mCheckBox.setChecked(bunk.isChecked());
@@ -106,6 +131,8 @@ public class MainFragment extends Fragment {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
             mBunk.setIsChecked(isChecked);
+
+
         }
     }
 
@@ -144,5 +171,7 @@ public class MainFragment extends Fragment {
             return bunks.size();
         }
     }
+
+
 
 }
