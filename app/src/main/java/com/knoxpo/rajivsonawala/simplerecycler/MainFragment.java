@@ -82,7 +82,9 @@ public class MainFragment extends Fragment {
             mTextView =itemView.findViewById(R.id.your_day);
             mYourDate=itemView.findViewById(R.id.your_date);
             mCheckBox=itemView.findViewById(R.id.bunk_choice);
+
         }
+
 
         public void bind(Bunk bunk) {
            // mTextView.setText(bunk.getDay().toString());
@@ -97,10 +99,11 @@ public class MainFragment extends Fragment {
         public void onClick(View v) {
 
 
-        }
 
+        }
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
 
 
 
@@ -126,6 +129,7 @@ public class MainFragment extends Fragment {
             View view = mLayout.inflate(R.layout.simple_text_view, parent, false);
 
             return new BunkHolder(view);
+
 
         }
 
