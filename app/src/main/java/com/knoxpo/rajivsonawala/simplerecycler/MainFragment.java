@@ -33,7 +33,6 @@ public class MainFragment extends Fragment {
     private String TAG = "Your_Item";
     private Button mButton;
     private int TotalDay = Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_MONTH);
-    private int mNoofCheck;
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -42,6 +41,7 @@ public class MainFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.first_fragment, container, false);
+
 
         init(view);
 
@@ -55,7 +55,9 @@ public class MainFragment extends Fragment {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mNoofCheck=0;
+
+                int mNoofCheck=0;
+
                 for(int i=0;i<TotalDay;i++){
 
                     if(bunks.get(i).isChecked()==true){
