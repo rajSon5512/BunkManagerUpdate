@@ -94,7 +94,10 @@ public class MainFragment extends Fragment {
             CharSequence weekDayName = DateFormat.format("EEEE", date);
 
             mTextView.setText(weekDayName);
-            mYourDate.setText(bunk.getDate().toString());
+
+            CharSequence Date=DateFormat.format("EEEE ,d/MM/yy",date);
+
+            mYourDate.setText(Date.toString());
             mCheckBox.setChecked(bunk.isChecked());
 
             mCheckBox.setOnCheckedChangeListener(this);
