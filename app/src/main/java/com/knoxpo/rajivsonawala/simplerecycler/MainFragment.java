@@ -80,8 +80,8 @@ public class MainFragment extends Fragment {
 
         public BunkHolder(View itemView) {
             super(itemView);
-            mTextView = itemView.findViewById(R.id.your_day);
-            mYourDate = itemView.findViewById(R.id.your_date);
+            mTextView = itemView.findViewById(R.id.bunk_day);
+            mYourDate = itemView.findViewById(R.id.bunk_date);
             mCheckBox = itemView.findViewById(R.id.bunk_choice);
         }
 
