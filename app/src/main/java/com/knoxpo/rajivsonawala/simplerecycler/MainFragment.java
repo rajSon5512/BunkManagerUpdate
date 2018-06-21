@@ -9,6 +9,8 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,9 +33,9 @@ public class MainFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private List<Bunk> bunks = new ArrayList<>();
     private String TAG = "Your_Item";
-    private Button mButton;
+    private TextView mAnswer;
+    private int mNoOfDay=0;
     private int TotalDay = Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_MONTH);
-
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Nullable
@@ -42,7 +44,6 @@ public class MainFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.first_fragment, container, false);
 
-
         init(view);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -50,29 +51,8 @@ public class MainFragment extends Fragment {
         final BunkAdapterFirst bunkAdapterFirst = new BunkAdapterFirst(bunks);
 
         mRecyclerView.setAdapter(bunkAdapterFirst);
-
-
-        mButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                int mNoofCheck=0;
-
-                for(int i=0;i<TotalDay;i++){
-
-                    if(bunks.get(i).isChecked()==true){
-
-                        mNoofCheck=mNoofCheck+1;
-
-                    }
-
-                }
-                Toast.makeText(getActivity(),"Total No of check :"+mNoofCheck,Toast.LENGTH_LONG).show();
-
-            }
-        });
-
         return view;
+
     }
 
     @TargetApi(Build.VERSION_CODES.N)
@@ -80,7 +60,8 @@ public class MainFragment extends Fragment {
     private void init(View view) {
 
         mRecyclerView = view.findViewById(R.id.rv_list);
-        mButton=view.findViewById(R.id.total_checks);
+        mAnswer=view.findViewById(R.id.total_checks);
+        mAnswer.setText("Your Check No of Box :"+mNoOfDay);
 
         final int FirstDay = 0;
 
@@ -133,6 +114,21 @@ public class MainFragment extends Fragment {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
             mBunk.setIsChecked(isChecked);
+
+            mNoOfDay=0;
+
+            for(int i=0;i<TotalDay;i++){
+
+                if(bunks.get(i).isChecked()==true){
+
+                    mNoOfDay=mNoOfDay+1;
+
+                }
+
+                mAnswer.setText("your Number of Check Box:"+mNoOfDay);
+
+
+            }
 
 
         }
