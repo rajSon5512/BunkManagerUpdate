@@ -63,11 +63,11 @@ public class MainFragment extends Fragment {
         mAnswer=view.findViewById(R.id.total_checks);
         mAnswer.setText("Your Check No of Box :"+mNoOfDay);
 
-        final int FirstDay = 0;
+        final int mfirstDay = 0;
 
         Date d;
 
-        for (int i = FirstDay; i < TotalDay; i++) {
+        for (int i = mfirstDay; i < TotalDay; i++) {
 
             Calendar c = Calendar.getInstance();
             c.set(Calendar.DATE, 1);
